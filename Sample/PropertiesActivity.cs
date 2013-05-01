@@ -5,7 +5,7 @@ using SlidingMenuSharp;
 
 namespace Sample
 {
-    [Activity(Label = "Properties")]
+    [Activity(Label = "Properties", Theme = "@style/ExampleTheme")]
     public class PropertiesActivity : BaseActivity
     {
         public PropertiesActivity() 

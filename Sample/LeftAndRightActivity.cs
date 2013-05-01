@@ -4,7 +4,7 @@ using SlidingMenuSharp;
 
 namespace Sample
 {
-    [Activity(Label = "Left and Right")]
+    [Activity(Label = "Left and Right", Theme = "@style/ExampleTheme")]
     public class LeftAndRightActivity : BaseActivity
     {
         public LeftAndRightActivity() 

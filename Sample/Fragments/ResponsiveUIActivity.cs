@@ -6,7 +6,7 @@ using SlidingMenuSharp.App;
 
 namespace Sample.Fragments
 {
-    [Activity(Label = "Responsive UI")]
+    [Activity(Label = "Responsive UI", Theme = "@style/ExampleTheme")]
     public class ResponsiveUIActivity : SlidingFragmentActivity
     {
         private Android.Support.V4.App.Fragment _content;

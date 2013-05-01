@@ -5,7 +5,7 @@ using SlidingMenuSharp;
 
 namespace Sample
 {
-    [Activity(Label = "Attach Example")]
+    [Activity(Label = "Attach Example", Theme = "@style/ExampleTheme")]
     public class AttachExample : FragmentActivity
     {
         private SlidingMenu _menu;

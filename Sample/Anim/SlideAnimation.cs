@@ -3,7 +3,7 @@ using SlidingMenuSharp;
 
 namespace Sample.Anim
 {
-    [Activity(Label = "Slide Animation")]
+    [Activity(Label = "Slide Animation", Theme = "@style/ExampleTheme")]
     public class SlideAnimation : CustomAnimation
     {
         public SlideAnimation()

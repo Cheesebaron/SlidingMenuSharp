@@ -4,7 +4,7 @@ using SlidingMenuSharp;
 
 namespace Sample.Fragments
 {
-    [Activity(Label = "Fragment Change")]
+    [Activity(Label = "Fragment Change", Theme = "@style/ExampleTheme")]
     public class FragmentChangeActivity : BaseActivity
     {
         private Android.Support.V4.App.Fragment _content;

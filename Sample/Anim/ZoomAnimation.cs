@@ -3,7 +3,7 @@ using SlidingMenuSharp;
 
 namespace Sample.Anim
 {
-    [Activity(Label = "Zoom Animation")]
+    [Activity(Label = "Zoom Animation", Theme = "@style/ExampleTheme")]
     public class ZoomAnimation : CustomAnimation
     {
         public ZoomAnimation()

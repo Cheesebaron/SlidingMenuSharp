@@ -10,7 +10,7 @@ using FragmentManager = Android.Support.V4.App.FragmentManager;
 
 namespace Sample
 {
-    [Activity(Label = "ViewPager")]
+    [Activity(Label = "ViewPager", Theme = "@style/ExampleTheme")]
     public class ViewPagerActivity : BaseActivity
     {
         public ViewPagerActivity() 
