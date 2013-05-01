@@ -220,7 +220,12 @@ namespace SlidingMenuSharp
                 case MenuMode.Left:
                     if (x >= content.Left)
                         vis = ViewStates.Invisible;
-                    ScrollTo((int)((x + BehindWidth * ScrollScale)), y);
+                    ScrollTo((int)((x + BehindWidth) * ScrollScale), y);
+                    break;
+                case MenuMode.Right:
+                    if (x <= content.Left)
+                        vis = ViewStates.Invisible;
+                    ScrollTo((int)(BehindWidth - Width + (x - BehindWidth) * ScrollScale), y);
                     break;
                 case MenuMode.LeftRight:
                     Content.Visibility = x >= content.Left ? ViewStates.Invisible : ViewStates.Visible;

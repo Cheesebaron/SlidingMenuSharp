@@ -279,7 +279,7 @@ namespace SlidingMenuSharp
 
         public int BehindOffset
         {
-            get { return ((LayoutParams) _viewBehind.LayoutParameters).RightMargin; }
+            get { return _viewBehind.WidthOffset; }
             set
             {
                 _viewBehind.WidthOffset = value;
@@ -334,8 +334,8 @@ namespace SlidingMenuSharp
             get { return _viewBehind.ScrollScale; }
             set
             {
-                if (value < 0 && value > 1)
-                    throw new ArgumentOutOfRangeException("value", "ScrollScale must be between 0 and 1");
+                if (value < 0f && value > 1f)
+                    throw new ArgumentOutOfRangeException("value", "ScrollScale must be between 0f and 1f");
                 _viewBehind.ScrollScale = value;
             }
         }

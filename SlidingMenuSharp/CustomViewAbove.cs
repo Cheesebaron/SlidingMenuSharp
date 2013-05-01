@@ -146,25 +146,25 @@ namespace SlidingMenuSharp
         void SetCurrentItemInternal(int item, bool smoothScroll, bool always, int velocity = 0)
         {
             if (!always && _curItem == item) {
-			    ScrollingCacheEnabled = false;
-			    return;
-		    }
+                ScrollingCacheEnabled = false;
+                return;
+            }
 
-		    item = _viewBehind.GetMenuPage(item);
+            item = _viewBehind.GetMenuPage(item);
 
-		    var dispatchSelected = _curItem != item;
-		    _curItem = item;
-		    var destX = GetDestScrollX(_curItem);
+            var dispatchSelected = _curItem != item;
+            _curItem = item;
+            var destX = GetDestScrollX(_curItem);
             if (dispatchSelected && PageSelected != null)
             {
                 PageSelected(this, new PageSelectedEventArgs { Position = item });
-		    }
-		    if (smoothScroll) {
-			    SmoothScrollTo(destX, 0, velocity);
-		    } else {
-			    CompleteScroll();
-			    ScrollTo(destX, 0);
-		    }
+            }
+            if (smoothScroll) {
+                SmoothScrollTo(destX, 0, velocity);
+            } else {
+                CompleteScroll();
+                ScrollTo(destX, 0);
+            }
         }
 
         public void AddIgnoredView(View v)
