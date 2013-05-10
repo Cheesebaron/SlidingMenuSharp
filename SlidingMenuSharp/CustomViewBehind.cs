@@ -375,6 +375,7 @@ namespace SlidingMenuSharp
                         SecondaryShadowDrawable.SetBounds(left, 0, left + ShadowWidth, Height);
                         SecondaryShadowDrawable.Draw(canvas);
                     }
+                    left = content.Left - ShadowWidth;
                     break;
             }
             ShadowDrawable.SetBounds(left, 0, left + ShadowWidth, Height);
