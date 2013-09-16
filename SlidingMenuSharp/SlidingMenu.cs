@@ -521,7 +521,7 @@ namespace SlidingMenuSharp
 
         protected override bool FitSystemWindows(Rect insets)
         {
-            if (_mActionbarOverlay)
+            if (!_mActionbarOverlay)
             {
                 Log.Verbose(Tag, "setting padding");
                 SetPadding(insets.Left, insets.Top, insets.Right, insets.Bottom);
