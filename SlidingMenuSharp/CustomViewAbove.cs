@@ -633,7 +633,7 @@ namespace SlidingMenuSharp
         {
             var activePointerId = ActivePointerId;
             var pointerIndex = GetPointerIndex(ev, activePointerId);
-            if (activePointerId == InvalidPointer)
+            if (activePointerId == InvalidPointer || pointerIndex == InvalidPointer)
                 return;
             var x = MotionEventCompat.GetX(ev, pointerIndex);
             var dx = x - _lastMotionX;
