@@ -530,7 +530,6 @@ namespace SlidingMenuSharp
         }
 
 #if __ANDROID_11__
-        private readonly Handler _handler = new Handler();
         public void ManageLayers(float percentOpen)
         {
             if ((int) Build.VERSION.SdkInt < 11) return;
@@ -540,7 +539,7 @@ namespace SlidingMenuSharp
 
             if (layerType != GetContent().LayerType)
             {
-                _handler.Post(() =>
+                Handler.Post(() =>
                     {
                         Log.Verbose(Tag, "changing layerType, hardware? " + (layerType == LayerType.Hardware));
                         GetContent().SetLayerType(layerType, null);
