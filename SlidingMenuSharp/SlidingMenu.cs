@@ -472,14 +472,14 @@ namespace SlidingMenuSharp
             set { _viewBehind.CanvasTransformer = value; }
         }
 
-        public class SavedState: BaseSavedState
+        public class SavedState : BaseSavedState
         {
             public int Item { get; private set; }
 
-            public SavedState(IParcelable superState, int item)
+            public SavedState(IParcelable superState)
                 : base(superState)
             {
-                Item = item;
+
             }
 
             public SavedState(Parcel parcel)
@@ -518,9 +518,14 @@ namespace SlidingMenuSharp
         {
             try
             {
-                var savedState = (SavedState)state;
-                base.OnRestoreInstanceState(savedState.SuperState);
-                _viewAbove.SetCurrentItem(savedState.Item);
+                Bundle bundle = state as Bundle;
+                if (bundle != null)
+                {
+                    IParcelable superState = (IParcelable)bundle.GetParcelable("base");
+                    if (superState != null)
+                        base.OnRestoreInstanceState(superState);
+                    _viewAbove.SetCurrentItem(bundle.GetInt("currentPosition", 0));
+                }
             }
             catch
             {
@@ -532,8 +537,11 @@ namespace SlidingMenuSharp
         protected override IParcelable OnSaveInstanceState()
         {
             var superState = base.OnSaveInstanceState();
-            var savedState = new SavedState(superState, _viewAbove.GetCurrentItem());
-            return savedState;
+            Bundle state = new Bundle();
+            state.PutParcelable("base", superState);
+            state.PutInt("currentPosition", _viewAbove.GetCurrentItem());
+
+            return state;
         }
 
         protected override bool FitSystemWindows(Rect insets)
