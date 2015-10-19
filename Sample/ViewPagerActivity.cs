@@ -28,8 +28,8 @@ namespace Sample
             SetContentView(vp);
 
             vp.PageSelected += (sender, args) =>
+                switch (args.Position)
                 {
-                    switch (args.P0)
                     {
                         case 0:
                             SlidingMenu.TouchModeAbove = TouchMode.Fullscreen;

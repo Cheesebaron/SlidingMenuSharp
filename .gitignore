@@ -109,3 +109,4 @@ UpgradeLog*.XML
 
 # ignore Xamarin component folder
 [Cc]omponents
+*.userprefs
