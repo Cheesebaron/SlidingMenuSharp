@@ -116,15 +116,13 @@ namespace SlidingMenuSharp
             try
             {
                 var version = int.Parse(Build.VERSION.Sdk);
-
                 if (version >= 21)
                 {
                     this.SystemUiVisibility = (StatusBarVisibility)Android.Views.SystemUiFlags.LayoutHideNavigation;                         
                 }
             }
-            catch (Exception exc)
+            catch
             {
-
             }
 
             a.Recycle();
