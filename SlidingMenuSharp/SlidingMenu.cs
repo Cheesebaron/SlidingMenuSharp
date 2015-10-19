@@ -31,27 +31,27 @@ namespace SlidingMenuSharp
     public class SlidingMenu : RelativeLayout
     {
         private new const string Tag = "SlidingMenu";
-	    private bool _mActionbarOverlay;
+        private bool _mActionbarOverlay;
 
-	    private readonly CustomViewAbove _viewAbove;
-	    private readonly CustomViewBehind _viewBehind;
+        private readonly CustomViewAbove _viewAbove;
+        private readonly CustomViewBehind _viewBehind;
 
         public event EventHandler Open;
         public event EventHandler Close;
         public event EventHandler Opened;
         public event EventHandler Closed;
 
-        public SlidingMenu(Context context) 
+        public SlidingMenu(Context context)
             : this(context, null)
         {
         }
 
-        public SlidingMenu(Context context, IAttributeSet attrs) 
+        public SlidingMenu(Context context, IAttributeSet attrs)
             : this(context, attrs, 0)
         {
         }
 
-        public SlidingMenu(Context context, IAttributeSet attrs, int defStyle) 
+        public SlidingMenu(Context context, IAttributeSet attrs, int defStyle)
             : base(context, attrs, defStyle)
         {
             var behindParams = new LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
@@ -66,19 +66,19 @@ namespace SlidingMenuSharp
             _viewBehind.CustomViewAbove = _viewAbove;
 
             _viewAbove.PageSelected += (sender, args) =>
-                {
-                    if (args.Position == 0 && null != Open) //position open
+            {
+                if (args.Position == 0 && null != Open) //position open
                         Open(this, EventArgs.Empty);
-                    else if (args.Position == 2 && null != Close) //position close
+                else if (args.Position == 2 && null != Close) //position close
                         Close(this, EventArgs.Empty);
-                };
+            };
 
             _viewAbove.Opened += (sender, args) => { if (null != Opened) Opened(sender, args); };
             _viewAbove.Closed += (sender, args) => { if (null != Closed) Closed(sender, args); };
 
             var a = context.ObtainStyledAttributes(attrs, Resource.Styleable.SlidingMenu);
-            var mode = a.GetInt(Resource.Styleable.SlidingMenu_mode, (int) MenuMode.Left);
-            Mode = (MenuMode) mode;
+            var mode = a.GetInt(Resource.Styleable.SlidingMenu_mode, (int)MenuMode.Left);
+            Mode = (MenuMode)mode;
             
             var viewAbove = a.GetResourceId(Resource.Styleable.SlidingMenu_viewAbove, -1);
             if (viewAbove != -1)
@@ -89,8 +89,8 @@ namespace SlidingMenuSharp
             TouchModeAbove = (TouchMode)a.GetInt(Resource.Styleable.SlidingMenu_touchModeAbove, (int)TouchMode.Margin);
             TouchModeBehind = (TouchMode)a.GetInt(Resource.Styleable.SlidingMenu_touchModeBehind, (int)TouchMode.Margin);
 
-            var offsetBehind = (int) a.GetDimension(Resource.Styleable.SlidingMenu_behindOffset, -1);
-            var widthBehind = (int) a.GetDimension(Resource.Styleable.SlidingMenu_behindWidth, -1);
+            var offsetBehind = (int)a.GetDimension(Resource.Styleable.SlidingMenu_behindOffset, -1);
+            var widthBehind = (int)a.GetDimension(Resource.Styleable.SlidingMenu_behindWidth, -1);
             if (offsetBehind != -1 && widthBehind != -1)
                 throw new ArgumentException("Cannot set both behindOffset and behindWidth for SlidingMenu, check your XML");
             if (offsetBehind != -1)
@@ -112,6 +112,20 @@ namespace SlidingMenuSharp
             var selectorRes = a.GetResourceId(Resource.Styleable.SlidingMenu_selectorDrawable, -1);
             if (selectorRes != -1)
                 SelectorDrawable = selectorRes;
+
+            try
+            {
+                var version = int.Parse(Build.VERSION.Sdk);
+
+                if (version >= 21)
+                {
+                    this.SystemUiVisibility = (StatusBarVisibility)Android.Views.SystemUiFlags.LayoutHideNavigation;                         
+                }
+            }
+            catch (Exception exc)
+            {
+
+            }
 
             a.Recycle();
         }
@@ -307,7 +321,7 @@ namespace SlidingMenuSharp
         {
             set
             { 
-                var i = (int) Context.Resources.GetDimension(value);
+                var i = (int)Context.Resources.GetDimension(value);
                 BehindOffset = i;
             }
         }
@@ -319,9 +333,9 @@ namespace SlidingMenuSharp
 
         public int AboveOffsetRes
         {
-            set 
+            set
             {
-                var i = (int) Context.Resources.GetDimension(value);
+                var i = (int)Context.Resources.GetDimension(value);
                 AboveOffset = i;
             }
         }
@@ -372,7 +386,7 @@ namespace SlidingMenuSharp
                     && value != TouchMode.None)
                 {
                     throw new ArgumentException("TouchMode must be set to either" +
-                            "TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE.", "value");
+                        "TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE.", "value");
                 }
                 _viewAbove.TouchMode = value;
             }
@@ -386,7 +400,7 @@ namespace SlidingMenuSharp
                     && value != TouchMode.None)
                 {
                     throw new ArgumentException("TouchMode must be set to either" +
-                            "TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE.", "value");
+                        "TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE.", "value");
                 }
                 _viewBehind.TouchMode = value;
             }
@@ -554,7 +568,7 @@ namespace SlidingMenuSharp
             return true;
         }
 
-#if __ANDROID_11__
+        #if __ANDROID_11__
         public void ManageLayers(float percentOpen)
         {
             if ((int) Build.VERSION.SdkInt < 11) return;
