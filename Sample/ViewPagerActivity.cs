@@ -13,7 +13,7 @@ namespace Sample
     [Activity(Label = "ViewPager", Theme = "@style/ExampleTheme")]
     public class ViewPagerActivity : BaseActivity
     {
-        public ViewPagerActivity()
+        public ViewPagerActivity() 
             : base(Resource.String.viewpager)
         { }
 
@@ -22,23 +22,23 @@ namespace Sample
             base.OnCreate(savedInstanceState);
 
             var vp = new ViewPager(this)
-            {
-                Id = "VP".GetHashCode()
-            };
+                {
+                    Id = "VP".GetHashCode()
+                };
             SetContentView(vp);
 
             vp.PageSelected += (sender, args) =>
-            {
                 switch (args.Position)
                 {
-                    case 0:
-                        SlidingMenu.TouchModeAbove = TouchMode.Fullscreen;
-                        break;
-                    default:
-                        SlidingMenu.TouchModeAbove = TouchMode.Margin;
-                        break;
-                }
-            };
+                    {
+                        case 0:
+                            SlidingMenu.TouchModeAbove = TouchMode.Fullscreen;
+                            break;
+                        default:
+                            SlidingMenu.TouchModeAbove = TouchMode.Margin;
+                            break;
+                    }
+                };
 
             vp.Adapter = new ColorPagerAdapter(SupportFragmentManager);
             vp.SetCurrentItem(0, true);
@@ -50,15 +50,15 @@ namespace Sample
             private readonly IList<Fragment> _fragments;
 
             private readonly int[] _colors = new[]
-            {
-                Resource.Color.red,
-                Resource.Color.green,
-                Resource.Color.blue,
-                Resource.Color.white,
-                Resource.Color.black
-            };
+                {
+                    Resource.Color.red,
+                    Resource.Color.green,
+                    Resource.Color.blue,
+                    Resource.Color.white,
+                    Resource.Color.black
+                };
 
-            public ColorPagerAdapter(FragmentManager fm)
+            public ColorPagerAdapter(FragmentManager fm) 
                 : base(fm)
             {
                 _fragments = new List<Fragment>();
