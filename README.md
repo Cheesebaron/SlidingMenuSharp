@@ -1,7 +1,7 @@
 SlidingMenuSharp
 ================
 
-A direct port of [SlidingMenu](https://github.com/jfeinstein10/SlidingMenu) to C# to work with [Xamarin.Android](http://xamarin.com/monoforandroid)
+A direct port of [SlidingMenu](https://github.com/jfeinstein10/SlidingMenu) to C# to work with [Xamarin.Android](http://xamarin.com/monoforandroid) **upgraded to support AndroidX**
 
 TODO
 ----
