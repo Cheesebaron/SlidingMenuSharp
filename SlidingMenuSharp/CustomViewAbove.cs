@@ -804,7 +804,7 @@ namespace SlidingMenuSharp
                     case Keycode.Tab:
                         if ((int)Build.VERSION.SdkInt >= 11)
                         {
-                            if (KeyEventCompat.HasNoModifiers(ev))
+                            if (ev.HasNoModifiers)
                                 handled = ArrowScroll(FocusSearchDirection.Forward);
 #if __ANDROID_11__
                             else if (ev.IsMetaPressed)
